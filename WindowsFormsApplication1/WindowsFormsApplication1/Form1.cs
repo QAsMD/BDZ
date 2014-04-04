@@ -23,7 +23,11 @@ namespace WindowsFormsApplication1
         }
         private void connectAPIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Form2().Show();
+            if (!Settings1.Default.auth)
+            {
+                new Form2().Show();
+            }
+            
             btn_Friends.Enabled = true;
             btn_Messages.Enabled = true;
             btn_Profile.Enabled = true;
