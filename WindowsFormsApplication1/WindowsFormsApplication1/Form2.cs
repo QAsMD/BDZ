@@ -46,8 +46,6 @@ namespace WindowsFormsApplication1
                 }
             }
             catch { }
-        }
-
-       
+        }       
     }
 }
