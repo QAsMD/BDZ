@@ -35,8 +35,10 @@
             this.btn_Profile = new System.Windows.Forms.Button();
             this.btn_Friends = new System.Windows.Forms.Button();
             this.btn_Messages = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -61,7 +63,7 @@
             // connectAPIToolStripMenuItem
             // 
             this.connectAPIToolStripMenuItem.Name = "connectAPIToolStripMenuItem";
-            this.connectAPIToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.connectAPIToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.connectAPIToolStripMenuItem.Text = "Connect API";
             this.connectAPIToolStripMenuItem.Click += new System.EventHandler(this.connectAPIToolStripMenuItem_Click);
             // 
@@ -103,21 +105,31 @@
             this.btn_Messages.Text = "Messages";
             this.btn_Messages.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // pictureBox1
             // 
-            this.listView1.Enabled = false;
-            this.listView1.Location = new System.Drawing.Point(12, 85);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(696, 363);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.pictureBox1.Location = new System.Drawing.Point(29, 99);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(235, 294);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(26, 396);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(238, 34);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "name_user";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(720, 460);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_Messages);
             this.Controls.Add(this.btn_Friends);
             this.Controls.Add(this.btn_Profile);
@@ -129,6 +141,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,7 +156,8 @@
         private System.Windows.Forms.Button btn_Profile;
         private System.Windows.Forms.Button btn_Friends;
         private System.Windows.Forms.Button btn_Messages;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
