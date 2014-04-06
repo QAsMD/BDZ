@@ -44,8 +44,9 @@ namespace WindowsFormsApplication1
             var result = lib_vk.users_get(Settings1.Default.id, "photo_max_orig");
             var response = result["response"];
             string url_photo = response[0]["photo_max_orig"];
-            name_user = response[0]["first_name"] + " " + response[0]["last_name"];
-            name_user = lib_encode.encode_str(name_user);
+            string str = response[0]["first_name"];
+            name_user = lib_encode.encode_str(str);
+            name_user += " " + lib_encode.encode_str(response[0]["last_name"]);
             pictureBox1.Load(url_photo);
             label1.Text = name_user;
         }

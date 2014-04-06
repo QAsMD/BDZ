@@ -13,9 +13,10 @@ namespace WindowsFormsApplication1
     {
         public static string encode_str(string str)
         {
-            Encoding srcEncodingFormat = Encoding.UTF8;
-            Encoding dstEncodingFormat = Encoding.Default;
+            Encoding srcEncodingFormat = Encoding.Unicode;
+            Encoding dstEncodingFormat = Encoding.UTF8;
             byte[] originalByteString = srcEncodingFormat.GetBytes(str);
+            string name = Encoding.Default.GetString(originalByteString);
             byte[] convertedByteString = Encoding.Convert(srcEncodingFormat,
             dstEncodingFormat, originalByteString);
             string finalString = dstEncodingFormat.GetString(convertedByteString);
