@@ -29,8 +29,6 @@ namespace WindowsFormsApplication1
             btn_Friends.Enabled = true;
             btn_Messages.Enabled = true;
             btn_Profile.Enabled = true;
-            listView1.Enabled = true;
-            listView1.LargeImageList = list_image;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -47,8 +45,9 @@ namespace WindowsFormsApplication1
             var response = result["response"];
             string url_photo = response[0]["photo_max_orig"];
             name_user = response[0]["first_name"] + " " + response[0]["last_name"];
-            list_image.Images.Add(lib_image.download_image(url_photo));
-            listView1.Items.Add(name_user, 0);
+            name_user = lib_encode.encode_str(name_user);
+            pictureBox1.Load(url_photo);
+            label1.Text = name_user;
         }
     }
 }
