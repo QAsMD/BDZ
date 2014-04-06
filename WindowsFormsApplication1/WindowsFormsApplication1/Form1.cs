@@ -45,7 +45,7 @@ namespace WindowsFormsApplication1
             string name_user = String.Empty;
             string image_user = String.Empty;
 
-            var result = lib_vk.users_get(Settings1.Default.id, "photo_max_orig");
+            var result = lib_vk.users_get("21881340", "photo_max_orig");
             var response = result["response"];
             string url_photo = response[0]["photo_max_orig"];
             string str = response[0]["first_name"];
