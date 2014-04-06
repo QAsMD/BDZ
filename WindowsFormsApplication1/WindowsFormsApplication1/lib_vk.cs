@@ -13,6 +13,43 @@ namespace WindowsFormsApplication1
     {
         static WebClient client = new WebClient();
         static string uri_api = "https://api.vk.com/method/";
+
+        public static void remover()
+        {
+            var keys = client.QueryString.Keys;
+
+            foreach (var key in keys)
+            {
+                client.QueryString.Remove((string)key);
+            }
+        }
+        
+        
+        public static Dictionary<string,dynamic> friends_get(string id_user, string fields)
+        {
+            Dictionary<string, dynamic> result;
+            string error = "";
+                        
+            client.QueryString.Add("user_ids", id_user);
+            client.QueryString.Add("order", "hints");
+            client.QueryString.Add("fields", fields);
+
+            try
+            {
+                string response = client.DownloadString(uri_api + "friends.get");
+                result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(response);
+
+                lib_vk.remover();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(error = ex.Message + " " + ex.InnerException);
+                return null;
+            }
+        }
+        
         public static Dictionary<string, dynamic> users_get(string id_user, string fields)
         {
             Dictionary<string, dynamic> result;
@@ -25,6 +62,9 @@ namespace WindowsFormsApplication1
             {
                 string response = client.DownloadString(uri_api + "users.get");
                 result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(response);
+                
+                lib_vk.remover();
+                
                 return result;
             }
             catch (Exception ex)
