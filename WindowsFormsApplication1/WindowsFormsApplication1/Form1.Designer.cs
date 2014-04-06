@@ -61,7 +61,7 @@
             // connectAPIToolStripMenuItem
             // 
             this.connectAPIToolStripMenuItem.Name = "connectAPIToolStripMenuItem";
-            this.connectAPIToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.connectAPIToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.connectAPIToolStripMenuItem.Text = "Connect API";
             this.connectAPIToolStripMenuItem.Click += new System.EventHandler(this.connectAPIToolStripMenuItem_Click);
             // 
@@ -106,8 +106,11 @@
             // listView1
             // 
             this.listView1.Enabled = false;
+            this.listView1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listView1.Location = new System.Drawing.Point(12, 85);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
+            this.listView1.OwnerDraw = true;
             this.listView1.Size = new System.Drawing.Size(696, 363);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;

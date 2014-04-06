@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -57,6 +58,7 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="lib_image.cs" />
     <Compile Include="lib_vk.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
