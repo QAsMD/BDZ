@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1
             string url_photo = response[0]["photo_max_orig"];
             string str = response[0]["first_name"];
             name_user = lib_encode.encode_str(str);
-            name_user += " " + lib_encode.encode_str(response[0]["last_name"]);
+            //name_user += " " + lib_encode.encode_str(response[0]["last_name"]);
             pictureBox1.Load(url_photo);
             label1.Text = name_user;
         }

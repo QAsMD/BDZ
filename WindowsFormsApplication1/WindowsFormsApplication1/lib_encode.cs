@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
             Encoding srcEncodingFormat = Encoding.Unicode;
             Encoding dstEncodingFormat = Encoding.UTF8;
             byte[] originalByteString = srcEncodingFormat.GetBytes(str);
-            string name = Encoding.Default.GetString(originalByteString);
+            string name = dstEncodingFormat.GetString(originalByteString);
             byte[] convertedByteString = Encoding.Convert(srcEncodingFormat,
             dstEncodingFormat, originalByteString);
             string finalString = dstEncodingFormat.GetString(convertedByteString);

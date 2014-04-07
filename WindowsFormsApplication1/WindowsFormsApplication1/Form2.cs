@@ -42,8 +42,7 @@ namespace WindowsFormsApplication1
                     Settings1.Default.token = l.Split('&')[0].Split('=')[1];
                     Settings1.Default.id = l.Split('=')[3];
                     Settings1.Default.auth = true;
-                   // MessageBox.Show(Settings1.Default.token + " " + Settings1.Default.id);
-                    this.Close();
+                    //MessageBox.Show(Settings1.Default.token + " " + Settings1.Default.id);
                 }
             }
             catch { }
