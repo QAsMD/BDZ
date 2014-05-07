@@ -45,14 +45,23 @@ namespace WindowsFormsApplication1
             string name_user = String.Empty;
             string image_user = String.Empty;
 
-            var result = lib_vk.users_get("21881340", "photo_max_orig");
-            var response = result["response"];
-            string url_photo = response[0]["photo_max_orig"];
-            string str = response[0]["first_name"];
-            name_user = lib_encode.encode_str(str);
-            //name_user += " " + lib_encode.encode_str(response[0]["last_name"]);
+            var result = lib_vk.users_get("21881340", "photo_max_orig, status, last_seen, counters");
+            string url_photo = result["photo_max_orig"];
+            try
+            {
+                var status = result["status_audio"];
+                labStatus.Text = "AudioPlay: ";
+                labTextStatus.Text = status["artist"] + " - " + status["title"];
+            }
+            catch
+            {
+                labStatus.Text = "Status: ";
+                labTextStatus.Text = result["status"];
+            }
+            name_user = result["first_name"] + " " + result["last_name"];
+            labTextLastSeen.Text = lib_vk.ConvertFromUnixTimestamp((double)result["last_seen"]["time"]);
             pictureBox1.Load(url_photo);
-            label1.Text = name_user;
+            labName.Text = name_user;
         }
     }
 }
