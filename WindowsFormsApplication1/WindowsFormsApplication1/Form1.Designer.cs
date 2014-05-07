@@ -35,14 +35,14 @@
             this.btn_Profile = new System.Windows.Forms.Button();
             this.btn_Friends = new System.Windows.Forms.Button();
             this.btn_Messages = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.labName = new System.Windows.Forms.Label();
             this.labStatus = new System.Windows.Forms.Label();
             this.labFriends = new System.Windows.Forms.Label();
             this.labTextLastSeen = new System.Windows.Forms.Label();
             this.labTextStatus = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -83,7 +83,7 @@
             // 
             this.btn_Profile.Enabled = false;
             this.btn_Profile.Location = new System.Drawing.Point(9, 25);
-            this.btn_Profile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Profile.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Profile.Name = "btn_Profile";
             this.btn_Profile.Size = new System.Drawing.Size(143, 39);
             this.btn_Profile.TabIndex = 1;
@@ -95,33 +95,35 @@
             // 
             this.btn_Friends.Enabled = false;
             this.btn_Friends.Location = new System.Drawing.Point(199, 25);
-            this.btn_Friends.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Friends.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Friends.Name = "btn_Friends";
             this.btn_Friends.Size = new System.Drawing.Size(143, 39);
             this.btn_Friends.TabIndex = 2;
-            this.btn_Friends.Text = "Friends";
+            this.btn_Friends.Text = "Music";
             this.btn_Friends.UseVisualStyleBackColor = true;
             // 
             // btn_Messages
             // 
             this.btn_Messages.Enabled = false;
             this.btn_Messages.Location = new System.Drawing.Point(388, 25);
-            this.btn_Messages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Messages.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Messages.Name = "btn_Messages";
             this.btn_Messages.Size = new System.Drawing.Size(143, 39);
             this.btn_Messages.TabIndex = 3;
             this.btn_Messages.Text = "Messages";
             this.btn_Messages.UseVisualStyleBackColor = true;
+            this.btn_Messages.Click += new System.EventHandler(this.btn_Messages_Click);
             // 
-            // pictureBox1
+            // pictureBoxProfile
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(11, 68);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(219, 295);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxProfile.Location = new System.Drawing.Point(11, 68);
+            this.pictureBoxProfile.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxProfile.Name = "pictureBoxProfile";
+            this.pictureBoxProfile.Size = new System.Drawing.Size(219, 295);
+            this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxProfile.TabIndex = 4;
+            this.pictureBoxProfile.TabStop = false;
             // 
             // labName
             // 
@@ -177,7 +179,7 @@
             this.Controls.Add(this.labFriends);
             this.Controls.Add(this.labStatus);
             this.Controls.Add(this.labName);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxProfile);
             this.Controls.Add(this.btn_Messages);
             this.Controls.Add(this.btn_Friends);
             this.Controls.Add(this.btn_Profile);
@@ -188,7 +190,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,7 +205,7 @@
         private System.Windows.Forms.Button btn_Profile;
         private System.Windows.Forms.Button btn_Friends;
         private System.Windows.Forms.Button btn_Messages;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxProfile;
         private System.Windows.Forms.Label labName;
         private System.Windows.Forms.Label labStatus;
         private System.Windows.Forms.Label labFriends;

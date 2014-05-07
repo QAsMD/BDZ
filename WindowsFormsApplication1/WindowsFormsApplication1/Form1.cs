@@ -60,8 +60,13 @@ namespace WindowsFormsApplication1
             }
             name_user = result["first_name"] + " " + result["last_name"];
             labTextLastSeen.Text = lib_vk.ConvertFromUnixTimestamp((double)result["last_seen"]["time"]);
-            pictureBox1.Load(url_photo);
+            pictureBoxProfile.Load(url_photo);
             labName.Text = name_user;
+        }
+
+        private void btn_Messages_Click(object sender, EventArgs e)
+        {
+            new Messages().Show();
         }
     }
 }
