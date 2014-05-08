@@ -22,9 +22,10 @@ namespace WindowsFormsApplication1
             request.AddUrlParam("user_ids", id_user);
             request.AddUrlParam("order", "hints");
             request.AddUrlParam("fields", fields);
-            string content = request.Get(uri_api + "friends.get?").ToString();
+            
             try
             {
+                string content = request.Get(uri_api + "friends.get?").ToString();
                 result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(content);
 
                 return result;
@@ -45,9 +46,9 @@ namespace WindowsFormsApplication1
             request.AddUrlParam("user_ids", id_user);
             request.AddUrlParam("access_token", Settings1.Default.token);
             request.AddUrlParam("fields", fields);
-            string content = request.Get(uri_api + "users.get?").ToString();
             try
             {
+                string content = request.Get(uri_api + "users.get?").ToString();
                 result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(content);
                 return result["response"][0];
             }
@@ -64,27 +65,29 @@ namespace WindowsFormsApplication1
             return origin.AddSeconds(timestamp).ToString();
         }
 
-        //public static Dictionary<string, dynamic> messages_get(int count = 20)
-        //{
-        //    WebClient client = new WebClient();
-        //    Dictionary<string, dynamic> result;
-        //    string error = "";
-        //    client.QueryString.Add("out", "0");
-        //    client.QueryString.Add("time_offset", "0");
-        //    client.QueryString.Add("count", count.ToString());
-        //    client.QueryString.Add("access_token", Settings1.Default.token);
-        //    try
-        //    {
-        //        string response = client.DownloadString(uri_api + "messages.get");
-        //        result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(response);
-        //        return result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(error = ex.Message + " " + ex.InnerException);
-        //        return null;
-        //    }
-        //}
+        public static Dictionary<string, dynamic> messages_get(int count = 20)
+        {
+            Dictionary<string, dynamic> result;
+            string error = "";
+            var request = new HttpRequest();
+            request.AddUrlParam("out", "0");
+            request.AddUrlParam("access_token", Settings1.Default.token);
+            request.AddUrlParam("count", count.ToString());
+            request.AddUrlParam("time_offset", "0");
+                
+            try
+            {
+                string content = request.Get(uri_api + "messages.get.get?").ToString();
+                result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(content);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(error = ex.Message + " " + ex.InnerException);
+                return null;
+            }
+        }
+
         //public static Dictionary<string, dynamic> message_send(int user_id, string message = "Привет от Шарпов(C#)", string attachment = "doc21881340_285976245")
         //{
         //    WebClient client = new WebClient();
