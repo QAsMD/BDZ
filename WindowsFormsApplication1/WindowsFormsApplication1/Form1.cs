@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
-using System.IO; 
+using System.IO;
+using System.Diagnostics;
 
 namespace WindowsFormsApplication1
 {
@@ -17,6 +18,9 @@ namespace WindowsFormsApplication1
         ImageList list_image = new ImageList();
         public Form1()
         {
+            
+            
+
             InitializeComponent();
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

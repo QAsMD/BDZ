@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -13,13 +13,17 @@ namespace WindowsFormsApplication1
     public partial class Form2 : Form
     {
         public Form2()
-        {
+        {            
             InitializeComponent();
+            
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+           
+
             
+
             webBrowser1.Navigate("https://oauth.vk.com/authorize?client_id=4221474&scope=messages,offline&redirect_uri=https://oauth.vk.com/blank.html&display=popup&v=5.15&response_type=token ");
         }
 
@@ -31,7 +35,7 @@ namespace WindowsFormsApplication1
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             toolStripStatusLabel1.Text = "Загружено";
-
+            
             try
             {
 
@@ -46,6 +50,13 @@ namespace WindowsFormsApplication1
                 }
             }
             catch { }
+            int count = webBrowser1.Document.Cookie.Length;
+            webBrowser1.Document.Cookie.Remove(0, count);
+            if (Settings1.Default.auth == true)
+            {
+                Thread.Sleep(1000);
+                this.Close();
+            }
         }       
     }
 }

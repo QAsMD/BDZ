@@ -58,5 +58,16 @@ namespace WindowsFormsApplication1 {
                 this["token"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public bool wantToSave {
+            get {
+                return ((bool)(this["wantToSave"]));
+            }
+            set {
+                this["wantToSave"] = value;
+            }
+        }
     }
 }
