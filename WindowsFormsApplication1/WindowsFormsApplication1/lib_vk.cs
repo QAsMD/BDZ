@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1
     class lib_vk
     {
         static string uri_api = "https://api.vk.com/method/";
-        public static Dictionary<string, dynamic> friends_get(string id_user, string fields)
+        public static dynamic friends_get(string id_user, string fields = "screen_name")
         {
             Dictionary<string, dynamic> result;
             string error;
@@ -22,13 +22,13 @@ namespace WindowsFormsApplication1
             request.AddUrlParam("user_ids", id_user);
             request.AddUrlParam("order", "hints");
             request.AddUrlParam("fields", fields);
-            
+            request.AddUrlParam("access_token", Settings1.Default.token);
             try
             {
                 string content = request.Get(uri_api + "friends.get?").ToString();
                 result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(content);
 
-                return result;
+                return result["response"];
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace WindowsFormsApplication1
                 
             try
             {
-                string content = request.Get(uri_api + "messages.get.get?").ToString();
+                string content = request.Get(uri_api + "messages.get?").ToString();
                 result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(content);
                 return result;
             }
@@ -88,27 +88,27 @@ namespace WindowsFormsApplication1
             }
         }
 
-        //public static Dictionary<string, dynamic> message_send(int user_id, string message = "Привет от Шарпов(C#)", string attachment = "doc21881340_285976245")
-        //{
-        //    WebClient client = new WebClient();
-        //    Dictionary<string, dynamic> result;
-        //    string error = "";
-        //    client.QueryString.Add("user_id", user_id.ToString());
-        //    client.QueryString.Add("message", message);
-        //    client.QueryString.Add("attachment", attachment);
-        //    client.QueryString.Add("access_token", Settings1.Default.token);
-        //    try
-        //    {
-        //        string response = client.DownloadString(uri_api + "messages.send");
-        //        result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(response);
-        //        return result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(error = ex.Message + " " + ex.InnerException);
-        //        return null;
-        //    }
-        //}
+        public static dynamic message_send(int user_id, string message = "Привет от Шарпов", string attachment = "doc21881340_285976245")
+        {
+            Dictionary<string, dynamic> result;
+            string error = "";
+            var request = new HttpRequest();
+            request.AddUrlParam("user_id", user_id.ToString());
+            request.AddUrlParam("message", message);
+            request.AddUrlParam("attachment", attachment);
+            request.AddUrlParam("access_token", Settings1.Default.token);
+            try
+            {
+                string content = request.Get(uri_api + "messages.send?").ToString();
+                result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(content);
+                return result["response"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(error = ex.Message + " " + ex.InnerException);
+                return null;
+            }
+        }
         public static string encode_str(string str)
         {
             Encoding srcEncodingFormat = Encoding.Default;
