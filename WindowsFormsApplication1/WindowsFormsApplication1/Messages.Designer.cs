@@ -53,6 +53,7 @@
             this.butSend.TabIndex = 1;
             this.butSend.Text = "Send";
             this.butSend.UseVisualStyleBackColor = true;
+            this.butSend.Click += new System.EventHandler(this.butSend_Click);
             // 
             // butAttachment
             // 
