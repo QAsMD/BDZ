@@ -14,6 +14,7 @@ namespace WindowsFormsApplication1
     {
         string PATH_JPG = String.Empty;
         Dictionary<string, string> friend_dict = new Dictionary<string, string>();
+        List<UsersVK> friends_vk = new List<UsersVK>();
         public Messages()
         {
             InitializeComponent();
@@ -22,11 +23,17 @@ namespace WindowsFormsApplication1
             foreach (var friend in friends)
             {
                 count++;
-                string name = count.ToString() + ". " + friend["first_name"] + " " + friend["last_name"] + " ID:" + friend["uid"];
-                listBoxFriends.Items.Add(name);
+                UsersVK friend_user = new UsersVK(friend);
+                friends_vk.Add(friend_user);
+                listBoxFriends.Items.Add(count.ToString() + ". " + friend_user.name_user);
             }
+            listBoxFriends.SelectedIndex = 0;
+            listBoxFriends.SetSelected(0, true);
+            pictureBoxAttach.Load(friends_vk[0].url_photo);
+            labNameFriend.Text = friends_vk[0].name_user;
+            labStatusUser.Text = friends_vk[0].status_online;
+            groupBox2.Text = "Друзья (" + count.ToString() + "):";
         }
-
         private void butAttachment_Click(object sender, EventArgs e)
         {
             openFileDialogImage.ShowDialog();
@@ -36,26 +43,39 @@ namespace WindowsFormsApplication1
 
         private void butSend_Click(object sender, EventArgs e)
         {
-            string friend = "";
-            string id_send = "";
-            if (richTextBox1.Text != "" && PATH_JPG != "")
+            int index = listBoxFriends.SelectedIndex;
+            string id_send = friends_vk[index].id_user;
+            MessageBox.Show(id_send);
+
+            if (richTextBox1.Text != "" && PATH_JPG == "")
             {
-                try
-                {
-                    friend = listBoxFriends.SelectedItem.ToString();
-                    id_send = friend.Substring(friend.IndexOf("ID:") + 3);
-                    MessageBox.Show(friend);
-                }
-                catch
-                {
-                    MessageBox.Show("Выберите друга для отправки сообщения");
-                }
-                var content = lib_vk.message_send(Convert.ToInt32(id_send), richTextBox1.Text);
+                var content = lib_vk.message_send(id_send, richTextBox1.Text, "");
+            }
+            else if (richTextBox1.Text == "" && PATH_JPG != "")
+            {   
+                string name_file = PATH_JPG.Substring(PATH_JPG.LastIndexOf("\\") + 1);
+                var file = lib_vk.docs_save(PATH_JPG, name_file);
+                var content = lib_vk.message_send(id_send, richTextBox1.Text, file);
+            }
+            else if (richTextBox1.Text != "" && PATH_JPG != "")
+            {
+                string name_file = PATH_JPG.Substring(PATH_JPG.LastIndexOf("\\") + 1);
+                var file = lib_vk.docs_save(PATH_JPG, name_file);
+                var content = lib_vk.message_send(id_send, richTextBox1.Text, file);
             }
             else
             {
-                MessageBox.Show("Введите сообщение и выберите файл для отправки");
+                MessageBox.Show("Введите сообщение или выберите файл для отправки");
             }
+        }
+
+        private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = listBoxFriends.SelectedIndex;
+            UsersVK friend = friends_vk[index];
+            pictureBoxAttach.Load(friend.url_photo);
+            labNameFriend.Text = friend.name_user;
+            labStatusUser.Text = friend.status_online;
         }
     }
 }
