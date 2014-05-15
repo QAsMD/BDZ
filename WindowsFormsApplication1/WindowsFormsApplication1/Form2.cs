@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
 
             
 
-            webBrowser1.Navigate("https://oauth.vk.com/authorize?client_id=4221474&scope=messages,offline&redirect_uri=https://oauth.vk.com/blank.html&display=popup&v=5.15&response_type=token ");
+            webBrowser1.Navigate("https://oauth.vk.com/authorize?client_id=4221474&scope=messages,offline,docs&redirect_uri=https://oauth.vk.com/blank.html&display=popup&v=5.15&response_type=token ");
         }
 
         private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
