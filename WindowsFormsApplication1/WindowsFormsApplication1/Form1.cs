@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
             {
                 if (!Settings1.Default.auth)
                 {
-                    new Form2().Show();
+                    var Diag = new Form2().ShowDialog();
                 }
 
                 btn_Friends.Enabled = true;
@@ -52,7 +52,7 @@ namespace WindowsFormsApplication1
                 string name_user = String.Empty;
                 string image_user = String.Empty;
 
-                var result = lib_vk.users_get("21881340", "photo_max_orig, status, last_seen, counters");
+                var result = lib_vk.users_get(Settings1.Default.id, "photo_max_orig, status, last_seen, counters");
                 string url_photo = result["photo_max_orig"];
                 try
                 {

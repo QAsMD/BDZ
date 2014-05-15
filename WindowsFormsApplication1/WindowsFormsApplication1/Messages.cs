@@ -38,14 +38,14 @@ namespace WindowsFormsApplication1
         {
             openFileDialogImage.ShowDialog();
             PATH_JPG = openFileDialogImage.FileName;
-            MessageBox.Show(PATH_JPG);
+            //MessageBox.Show(PATH_JPG);
         }
 
         private void butSend_Click(object sender, EventArgs e)
         {
             int index = listBoxFriends.SelectedIndex;
             string id_send = friends_vk[index].id_user;
-            MessageBox.Show(id_send);
+            //MessageBox.Show(id_send);
 
             if (richTextBox1.Text != "" && PATH_JPG == "")
             {
