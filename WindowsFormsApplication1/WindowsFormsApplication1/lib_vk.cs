@@ -67,19 +67,42 @@ namespace WindowsFormsApplication1
             return origin.AddSeconds(timestamp).ToString();
         }
 
-        public static dynamic messages_get(int count = 20)
+        public static dynamic messages_get(string count = "20")
         {
             Dictionary<string, dynamic> result;
             string error = "";
             var request = new HttpRequest();
             request.AddUrlParam("out", "0");
             request.AddUrlParam("access_token", Settings1.Default.token);
-            request.AddUrlParam("count", count.ToString());
+            request.AddUrlParam("count", count);
             request.AddUrlParam("time_offset", "0");
                 
             try
             {
                 string content = request.Get(uri_api + "messages.get").ToString();
+                result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(content);
+                return result["response"];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(error = ex.Message + " " + ex.InnerException);
+                return null;
+            }
+        }
+
+        public static dynamic messages_history(string id_user, string v="5.21")
+        {
+            Dictionary<string, dynamic> result;
+            string error = "";
+
+            var request = new HttpRequest();
+            request.AddUrlParam("user_id", id_user);
+            request.AddUrlParam("access_token", Settings1.Default.token);
+            request.AddUrlParam("v", v);
+
+            try
+            {
+                string content = request.Get(uri_api + "messages.getHistory").ToString();
                 result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(content);
                 return result["response"];
             }

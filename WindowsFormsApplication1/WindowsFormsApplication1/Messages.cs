@@ -27,7 +27,6 @@ namespace WindowsFormsApplication1
                 friends_vk.Add(friend_user);
                 listBoxFriends.Items.Add(count.ToString() + ". " + friend_user.name_user);
             }
-            listBoxFriends.SelectedIndex = 0;
             listBoxFriends.SetSelected(0, true);
             pictureBoxAttach.Load(friends_vk[0].url_photo);
             labNameFriend.Text = friends_vk[0].name_user;
@@ -52,7 +51,7 @@ namespace WindowsFormsApplication1
                 var content = lib_vk.message_send(id_send, richTextBox1.Text, "");
             }
             else if (richTextBox1.Text == "" && PATH_JPG != "")
-            {   
+            {
                 string name_file = PATH_JPG.Substring(PATH_JPG.LastIndexOf("\\") + 1);
                 var file = lib_vk.docs_save(PATH_JPG, name_file);
                 var content = lib_vk.message_send(id_send, richTextBox1.Text, file);
@@ -76,6 +75,43 @@ namespace WindowsFormsApplication1
             pictureBoxAttach.Load(friend.url_photo);
             labNameFriend.Text = friend.name_user;
             labStatusUser.Text = friend.status_online;
+            get_message_history(friend.id_user, friend.name_user);
+        }
+
+        private void get_message_history(string id_user, string name_user)
+        {
+            string message;
+            List<string> list_message = new List<string>();
+            var message_history = lib_vk.messages_history(id_user);
+            groupBox1.Text = "Chat with '" + name_user + "'. Unread: ";
+            try
+            {
+                string unread_message = message_history["unread"];
+                groupBox1.Text += unread_message;
+            }
+            catch
+            {
+                groupBox1.Text += "0";
+            }
+            foreach (var element in message_history["items"])
+            {
+                string time = lib_vk.ConvertFromUnixTimestamp((double)element["date"]);
+                if (element["out"] == 0)
+                {
+                    message = name_user + ": " + element["body"];
+                }
+                else
+                {
+                    message = "Вы: " + element["body"];
+                }
+                list_message.Add(message + "\n\t\t\t" + time + "\n\n\n");
+            }
+            list_message.Reverse();
+            ListChat.Text = "";
+            foreach (var element in list_message)
+            {
+                ListChat.Text += element;
+            }
         }
     }
 }
