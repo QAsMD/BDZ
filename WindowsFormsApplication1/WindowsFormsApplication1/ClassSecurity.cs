@@ -43,19 +43,6 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            if (plainText.Length != 128)
-            {
-                while (true)
-                {
-                    correct_text += "{";
-                    if (correct_text.Length > 128)
-                    {
-                        correct_text = correct_text.Substring(0, 128);
-                        break;
-                    }
-                }
-            }
-
             byte[] byte_password = Encoding.Default.GetBytes(correct_password);
             byte[] byte_IV = Encoding.Default.GetBytes(IV);
 
@@ -147,8 +134,7 @@ namespace WindowsFormsApplication1
                 }
 
             }
-            return plaintext.Replace("{", "");
-
+            return plaintext;
         }
     }
 }
