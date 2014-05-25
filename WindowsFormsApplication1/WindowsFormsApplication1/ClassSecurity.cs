@@ -10,86 +10,131 @@ namespace WindowsFormsApplication1
 {
     class ClassSecurity
     {
-        public static string Encrypt(string plainText, string password, string salt = "Введисюдаченадо", string hashAlgorithm = "SHA1", int passwordIterations = 1, string initialVector = "OFRna73m*aze01xY",int keySize = 256)
+        public static string Encrypt(string plainText, string password, string user_IV = "magic_great_dead_or_alive")
         {
-            if (string.IsNullOrEmpty(plainText))
-                return "";
+            string correct_password = "";
+            string IV = "";
+            string correct_text = plainText;
+            byte[] encrypted;
 
-            byte[] initialVectorBytes = Encoding.ASCII.GetBytes(initialVector);
-            byte[] saltValueBytes = Encoding.ASCII.GetBytes(salt);
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-
-            PasswordDeriveBytes derivedPassword = new PasswordDeriveBytes (password, saltValueBytes, hashAlgorithm, passwordIterations);
-            byte[] keyBytes = derivedPassword.GetBytes(keySize / 8);
-            RijndaelManaged symmetricKey = new RijndaelManaged();
-            symmetricKey.Mode = CipherMode.CBC;
-
-            byte[] cipherTextBytes = null;
-
-            using (ICryptoTransform encryptor = symmetricKey.CreateEncryptor(keyBytes, initialVectorBytes))
+            if (password.Length != 32)
             {
-                using (MemoryStream memStream = new MemoryStream())
+                while (true)
                 {
-                    using (CryptoStream cryptoStream = new CryptoStream(memStream, encryptor, CryptoStreamMode.Write))
+                    correct_password += password;
+                    if (correct_password.Length > 32)
                     {
-                        cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
-                        cryptoStream.FlushFinalBlock();
-                        cipherTextBytes = memStream.ToArray();
-                        memStream.Close();
-                        cryptoStream.Close();
+                        correct_password = correct_password.Substring(0, 32);
+                        break;
                     }
                 }
             }
 
-            symmetricKey.Clear();
-            return Convert.ToBase64String(cipherTextBytes);
-        }
-
-        public static string Decrypt(string cipherText, string password,string salt = "Введисюдаченадо", string hashAlgorithm = "SHA1",int passwordIterations = 1, string initialVector = "OFRna73m*aze01xY",int keySize = 256)
-{
-        if (string.IsNullOrEmpty(cipherText))
-            return "";
-
-        byte[] initialVectorBytes = Encoding.ASCII.GetBytes(initialVector);
-        byte[] saltValueBytes = Encoding.ASCII.GetBytes(salt);
-        byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
-
-        PasswordDeriveBytes derivedPassword = new PasswordDeriveBytes(password, saltValueBytes, hashAlgorithm, passwordIterations);
-        byte[] keyBytes = derivedPassword.GetBytes(keySize / 8);
-
-        RijndaelManaged symmetricKey = new RijndaelManaged();
-        symmetricKey.Mode = CipherMode.CBC;
-
-        byte[] plainTextBytes = new byte[cipherTextBytes.Length];
-        int byteCount = 0;
-
-        using (ICryptoTransform decryptor = symmetricKey.CreateDecryptor(keyBytes, initialVectorBytes))
-        {
-            using (MemoryStream memStream = new MemoryStream(cipherTextBytes))
+            if (user_IV.Length != 16)
             {
-                using (CryptoStream cryptoStream = new CryptoStream(memStream, decryptor, CryptoStreamMode.Read))
+                while (true)
                 {
-                    byteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
-                    memStream.Close();
-                    cryptoStream.Close();
+                    IV += user_IV;
+                    if (IV.Length > 16)
+                    {
+                        IV = IV.Substring(0, 16);
+                        break;
+                    }
                 }
             }
+
+            byte[] byte_password = Encoding.Default.GetBytes(correct_password);
+            byte[] byte_IV = Encoding.Default.GetBytes(IV);
+
+            Aes aes_alg = Aes.Create();
+            aes_alg.Mode = CipherMode.CBC;
+            aes_alg.BlockSize = 128;
+            aes_alg.IV = byte_IV;
+            aes_alg.Key = byte_password;
+
+            ICryptoTransform encryptor = aes_alg.CreateEncryptor();
+
+            using (MemoryStream msEncrypt = new MemoryStream())
+            {
+                using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                {
+                    using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                    {
+                        //Write all data to the stream.
+                        swEncrypt.Write(correct_text);
+                    }
+                    encrypted = msEncrypt.ToArray();
+                }
+            }
+            return Convert.ToBase64String(encrypted);
         }
 
-        symmetricKey.Clear();
-        return Encoding.UTF8.GetString(plainTextBytes, 0, byteCount);
-    }
-
-        public static string Base64Encode(string plainText)
+        public static string Decrypt(string plainText, string password, string user_IV = "magic_great_dead_or_alive")
         {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-            return System.Convert.ToBase64String(plainTextBytes);
-        }
+            string correct_password = "";
+            string IV = "";
+            string correct_text = plainText;
 
-        public static string Base64Decode(string base64EncodedData)
-        {
-            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
-            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+            if (password.Length != 32)
+            {
+                while (true)
+                {
+                    correct_password += password;
+                    if (correct_password.Length > 32)
+                    {
+                        correct_password = correct_password.Substring(0, 32);
+                        break;
+                    }
+                }
+            }
+
+            if (user_IV.Length != 16)
+            {
+                while (true)
+                {
+                    IV += user_IV;
+                    if (IV.Length > 16)
+                    {
+                        IV = IV.Substring(0, 16);
+                        break;
+                    }
+                }
+            }
+
+            // Declare the string used to hold
+            // the decrypted text.
+            string plaintext = null;
+            byte[] byte_password = Encoding.Default.GetBytes(correct_password);
+            byte[] byte_IV = Encoding.Default.GetBytes(IV);
+            byte[] text = Convert.FromBase64String(plainText);
+            // Create an Aes object
+            // with the specified key and IV.
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = byte_password;
+                aesAlg.IV = byte_IV;
+                aesAlg.Mode = CipherMode.CBC;
+
+                // Create a decrytor to perform the stream transform.
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                // Create the streams used for decryption.
+                using (MemoryStream msDecrypt = new MemoryStream(text))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+
+                            // Read the decrypted bytes from the decrypting 
+                            // and place them in a string.
+                            plaintext = srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+
+            }
+            return plaintext;
         }
     }
 }

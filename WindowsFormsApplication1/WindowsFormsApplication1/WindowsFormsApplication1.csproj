@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassSecurity.cs" />
+    <Compile Include="Decryptor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Decryptor.Designer.cs">
+      <DependentUpon>Decryptor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     </Compile>
     <Compile Include="UsersVK.cs" />
     <Compile Include="workWithInputFiles.cs" />
+    <EmbeddedResource Include="Decryptor.resx">
+      <DependentUpon>Decryptor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

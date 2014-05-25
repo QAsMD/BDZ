@@ -44,10 +44,10 @@
             // btn_Friends
             // 
             this.btn_Friends.Enabled = false;
-            this.btn_Friends.Location = new System.Drawing.Point(234, 131);
-            this.btn_Friends.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Friends.Location = new System.Drawing.Point(312, 161);
+            this.btn_Friends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Friends.Name = "btn_Friends";
-            this.btn_Friends.Size = new System.Drawing.Size(240, 39);
+            this.btn_Friends.Size = new System.Drawing.Size(320, 48);
             this.btn_Friends.TabIndex = 2;
             this.btn_Friends.Text = "Music";
             this.btn_Friends.UseVisualStyleBackColor = true;
@@ -55,10 +55,10 @@
             // btn_Messages
             // 
             this.btn_Messages.Enabled = false;
-            this.btn_Messages.Location = new System.Drawing.Point(234, 174);
-            this.btn_Messages.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Messages.Location = new System.Drawing.Point(312, 214);
+            this.btn_Messages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Messages.Name = "btn_Messages";
-            this.btn_Messages.Size = new System.Drawing.Size(240, 39);
+            this.btn_Messages.Size = new System.Drawing.Size(320, 48);
             this.btn_Messages.TabIndex = 3;
             this.btn_Messages.Text = "Messages";
             this.btn_Messages.UseVisualStyleBackColor = true;
@@ -67,10 +67,10 @@
             // pictureBoxProfile
             // 
             this.pictureBoxProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxProfile.Location = new System.Drawing.Point(11, 11);
-            this.pictureBoxProfile.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(15, 14);
+            this.pictureBoxProfile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(219, 254);
+            this.pictureBoxProfile.Size = new System.Drawing.Size(291, 312);
             this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxProfile.TabIndex = 4;
             this.pictureBoxProfile.TabStop = false;
@@ -78,10 +78,9 @@
             // labName
             // 
             this.labName.Font = new System.Drawing.Font("Monotype Corsiva", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labName.Location = new System.Drawing.Point(234, 11);
-            this.labName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labName.Location = new System.Drawing.Point(312, 14);
             this.labName.Name = "labName";
-            this.labName.Size = new System.Drawing.Size(240, 58);
+            this.labName.Size = new System.Drawing.Size(320, 71);
             this.labName.TabIndex = 5;
             this.labName.Text = "name_user";
             this.labName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -89,42 +88,47 @@
             // labStatus
             // 
             this.labStatus.AutoSize = true;
-            this.labStatus.Location = new System.Drawing.Point(236, 69);
+            this.labStatus.Location = new System.Drawing.Point(315, 85);
+            this.labStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labStatus.Name = "labStatus";
-            this.labStatus.Size = new System.Drawing.Size(43, 13);
+            this.labStatus.Size = new System.Drawing.Size(56, 17);
             this.labStatus.TabIndex = 6;
             this.labStatus.Text = "Status: ";
             // 
             // labFriends
             // 
             this.labFriends.AutoSize = true;
-            this.labFriends.Location = new System.Drawing.Point(236, 98);
+            this.labFriends.Location = new System.Drawing.Point(315, 121);
+            this.labFriends.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labFriends.Name = "labFriends";
-            this.labFriends.Size = new System.Drawing.Size(61, 13);
+            this.labFriends.Size = new System.Drawing.Size(80, 17);
             this.labFriends.TabIndex = 7;
             this.labFriends.Text = "Last Seen: ";
             // 
             // labTextLastSeen
             // 
             this.labTextLastSeen.AutoSize = true;
-            this.labTextLastSeen.Location = new System.Drawing.Point(297, 98);
+            this.labTextLastSeen.Location = new System.Drawing.Point(396, 121);
+            this.labTextLastSeen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labTextLastSeen.Name = "labTextLastSeen";
-            this.labTextLastSeen.Size = new System.Drawing.Size(0, 13);
+            this.labTextLastSeen.Size = new System.Drawing.Size(0, 17);
             this.labTextLastSeen.TabIndex = 8;
             // 
             // labTextStatus
             // 
             this.labTextStatus.AutoSize = true;
-            this.labTextStatus.Location = new System.Drawing.Point(285, 69);
+            this.labTextStatus.Location = new System.Drawing.Point(380, 85);
+            this.labTextStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labTextStatus.Name = "labTextStatus";
-            this.labTextStatus.Size = new System.Drawing.Size(0, 13);
+            this.labTextStatus.Size = new System.Drawing.Size(0, 17);
             this.labTextStatus.TabIndex = 9;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(235, 218);
+            this.button1.Location = new System.Drawing.Point(313, 268);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(238, 39);
+            this.button1.Size = new System.Drawing.Size(317, 48);
             this.button1.TabIndex = 10;
             this.button1.Text = "Connect API";
             this.button1.UseVisualStyleBackColor = true;
@@ -132,9 +136,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 278);
+            this.ClientSize = new System.Drawing.Size(647, 342);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labTextStatus);
             this.Controls.Add(this.labTextLastSeen);
@@ -145,6 +149,7 @@
             this.Controls.Add(this.btn_Messages);
             this.Controls.Add(this.btn_Friends);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Encryption Message";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
